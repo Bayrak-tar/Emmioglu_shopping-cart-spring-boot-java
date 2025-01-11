@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<section>
+	<!-- Start Slider  -->
+	<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="img/laptopimg.png" class="d-block mx-auto" alt="Laptop Image" height="350px">
+			</div>
+			<div class="carousel-item">
+				<img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQjCfm2zKsQBramBds_VUDUvZFiZq_Erql8fGWraS-wduTz4XRppTr1ltbQoKR_KsMe57VE1-LiwJs9cs7ZUUeEwYTgN4ooQuw1MvSkwladkTAhYFFXzL0EiQ&usqp=CAE" class="d-block mx-auto" alt="..." height="350px">
+			</div>
+			<div class="carousel-item">
+				<img src="https://reimg-teknosa-cloud-prod.mncdn.com/mnresize/600/600/productimage/786299978/786299978_3_MC/df481b2833ef42ae85141c0bc0b6d24a.jpg" class="d-block mx-auto" alt="..." height="350px">
+			</div>
+			<div class="carousel-item">
+				<img src="https://c4.wallpaperflare.com/wallpaper/309/849/114/iwatch-apple-watch-series-2-display-silver-wallpaper-preview.jpg" class="d-block mx-auto" alt="..." height="350px">
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+	<!-- End Slider  -->
+
+	<!-- Start Category Module -->
+	<div class="container">
+		<div class="row">
+			<p class="text-center fs-4">KATEGORİ</p>
+			<div class="col-md-2" th:each="c:${category}">
+				<div class="card shadow-sm p-3 mb-5 bg-body-tertiary rounde">
+					<div class="card-body text-center">
+						<img th:src="@{'img/category_img/'+${c.imageName}}" width="65%" height="140px"><br>
+						<a th:href="@{'/products?category='+${c.name}}" class="text-decoration-none">[[${c.name}]]</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Category Module -->
+
+	<!-- Start Latest Product Module -->
+	<div class="container-fluid bg-light p-3">
+		<div class="row">
+			<p class="text-center fs-4">ÖNE ÇIKANLAR</p>
+			<div class="col-md-3" th:each="p:${products}">
+				<div class="card shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+					<div class="card-body text-center">
+						<img alt="" th:src="@{'img/product_img/'+${p.image}}" class="" width="65%" height="140px">
+						<p class="text-center"><a th:href="@{'/product/'+${p.id}}" class="text-decoration-none">[[${p.title}]]</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Latest Product Module -->
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
