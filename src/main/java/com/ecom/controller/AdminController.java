@@ -134,7 +134,7 @@ public class AdminController {
 				// System.out.println(path);
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
-				session.setAttribute("succMsg", "Saved successfully");
+				session.setAttribute("succMsg", "Başarılı bir şekilde kaydedildi");
 			}
 		}
 
@@ -188,9 +188,9 @@ public class AdminController {
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			}
 
-			session.setAttribute("succMsg", "Category update success");
+			session.setAttribute("succMsg", "Kategori güncellemesi başarılı");
 		} else {
-			session.setAttribute("errorMsg", "something wrong on server");
+			session.setAttribute("errorMsg", "Sunucuda bir sorun var");
 		}
 
 		return "redirect:/admin/loadEditCategory/" + category.getId();
@@ -217,9 +217,9 @@ public class AdminController {
 			// System.out.println(path);
 			Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
-			session.setAttribute("succMsg", "Product Saved Success");
+			session.setAttribute("succMsg", "Ürün Başarıyla Kaydedildi");
 		} else {
-			session.setAttribute("errorMsg", "something wrong on server");
+			session.setAttribute("errorMsg", "Sunucuda bir sorun var");
 		}
 
 		return "redirect:/admin/loadAddProduct";
@@ -260,9 +260,9 @@ public class AdminController {
 	public String deleteProduct(@PathVariable int id, HttpSession session) {
 		Boolean deleteProduct = productService.deleteProduct(id);
 		if (deleteProduct) {
-			session.setAttribute("succMsg", "Product delete success");
+			session.setAttribute("succMsg", "Ürün Başarılıyla Silindi");
 		} else {
-			session.setAttribute("errorMsg", "Something wrong on server");
+			session.setAttribute("errorMsg", "Sunucuda bir sorun var");
 		}
 		return "redirect:/admin/products";
 	}
@@ -279,13 +279,13 @@ public class AdminController {
 			HttpSession session, Model m) {
 
 		if (product.getDiscount() < 0 || product.getDiscount() > 100) {
-			session.setAttribute("errorMsg", "invalid Discount");
+			session.setAttribute("errorMsg", "Geçersiz İndirim");
 		} else {
 			Product updateProduct = productService.updateProduct(product, image);
 			if (!ObjectUtils.isEmpty(updateProduct)) {
-				session.setAttribute("succMsg", "Product update success");
+				session.setAttribute("succMsg", "Ürün Başarılıyla Güncellendi");
 			} else {
-				session.setAttribute("errorMsg", "Something wrong on server");
+				session.setAttribute("errorMsg", "Sunucuda bir sorun var");
 			}
 		}
 		return "redirect:/admin/editProduct/" + product.getId();
@@ -308,9 +308,9 @@ public class AdminController {
 	public String updateUserAccountStatus(@RequestParam Boolean status, @RequestParam Integer id,@RequestParam Integer type, HttpSession session) {
 		Boolean f = userService.updateAccountStatus(id, status);
 		if (f) {
-			session.setAttribute("succMsg", "Account Status Updated");
+			session.setAttribute("succMsg", "Hesap Durumu Güncellendi");
 		} else {
-			session.setAttribute("errorMsg", "Something wrong on server");
+			session.setAttribute("errorMsg", "Sunucuda bir sorun var");
 		}
 		return "redirect:/admin/users?type="+type;
 	}
@@ -357,9 +357,9 @@ public class AdminController {
 		}
 
 		if (!ObjectUtils.isEmpty(updateOrder)) {
-			session.setAttribute("succMsg", "Status Updated");
+			session.setAttribute("succMsg", "Ürün Durumu Güncellendi");
 		} else {
-			session.setAttribute("errorMsg", "status not updated");
+			session.setAttribute("errorMsg", "Ürün Durumu güncellenmedi");
 		}
 		return "redirect:/admin/orders";
 	}
@@ -374,7 +374,7 @@ public class AdminController {
 			ProductOrder order = orderService.getOrdersByOrderId(orderId.trim());
 
 			if (ObjectUtils.isEmpty(order)) {
-				session.setAttribute("errorMsg", "Incorrect orderId");
+				session.setAttribute("errorMsg", "Hatalı Sipariş Id");
 				m.addAttribute("orderDtls", null);
 			} else {
 				m.addAttribute("orderDtls", order);
@@ -425,9 +425,9 @@ public class AdminController {
 //				System.out.println(path);
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			}
-			session.setAttribute("succMsg", "Register successfully");
+			session.setAttribute("succMsg", "Kayıt Başarılı");
 		} else {
-			session.setAttribute("errorMsg", "something wrong on server");
+			session.setAttribute("errorMsg", "Sunucuda bir sorun var");
 		}
 
 		return "redirect:/admin/add-admin";
@@ -442,9 +442,9 @@ public class AdminController {
 	public String updateProfile(@ModelAttribute UserDtls user, @RequestParam MultipartFile img, HttpSession session) {
 		UserDtls updateUserProfile = userService.updateUserProfile(user, img);
 		if (ObjectUtils.isEmpty(updateUserProfile)) {
-			session.setAttribute("errorMsg", "Profile not updated");
+			session.setAttribute("errorMsg", "Profil güncel değil");
 		} else {
-			session.setAttribute("succMsg", "Profile Updated");
+			session.setAttribute("succMsg", "Profil güncellendi");
 		}
 		return "redirect:/admin/profile";
 	}
@@ -461,12 +461,12 @@ public class AdminController {
 			loggedInUserDetails.setPassword(encodePassword);
 			UserDtls updateUser = userService.updateUser(loggedInUserDetails);
 			if (ObjectUtils.isEmpty(updateUser)) {
-				session.setAttribute("errorMsg", "Password not updated !! Error in server");
+				session.setAttribute("errorMsg", "Şifre güncellenmedi");
 			} else {
-				session.setAttribute("succMsg", "Password Updated sucessfully");
+				session.setAttribute("succMsg", "Şifre Başarıyla Güncellendi");
 			}
 		} else {
-			session.setAttribute("errorMsg", "Current Password incorrect");
+			session.setAttribute("errorMsg", "Mevcut Şifre yanlış");
 		}
 
 		return "redirect:/admin/profile";
