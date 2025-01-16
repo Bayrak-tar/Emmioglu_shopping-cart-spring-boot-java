@@ -29,58 +29,56 @@
 							<form action="/admin/saveProduct" method="post"
 								enctype="multipart/form-data">
 								<div class="mb-3">
-									<label>Enter Title</label> <input type="text" name="title"
+									<label>Ürün Başlığını Giriniz</label> <input type="text" name="title"
 										class="form-control">
 								</div>
 
 								<div class="mb-3">
-									<label>Enter Description</label>
+									<label>Ürün Açıklamasını Giriniz</label>
 									<textarea rows="3" cols="" class="form-control"
 										name="description"></textarea>
 								</div>
 
 								<div class="mb-3">
-									<label>Category</label> <select class="form-control"
+									<label>Kategori</label> <select class="form-control"
 										name="category">
-										<option>--select--</option>
+										<option>--SEÇENEKLER--</option>
 										<option th:each="c:${categories}">[[${c.name}]]</option>
 									</select>
 								</div>
 
 								<div class="mb-3">
-									<label>Enter Price</label> <input type="number" name="price"
+									<label>Ürün Fiyatını Giriniz</label> <input type="number" name="price"
 										class="form-control">
 								</div>
 								<div class="mb-3">
-									<label>Status</label>
+									<label>Durum</label>
 
 									<div class="form-check">
 										<input class="form-check-input" type="radio" checked
 											value="true" name="isActive" id="flexRadioDefault1">
-										<label class="form-check-label" for="flexRadioDefault1">
-											Active </label>
+										<label class="form-check-label" for="flexRadioDefault1">Etkin</label>
 									</div>
 									<div class="form-check">
 										<input class="form-check-input" type="radio" name="isActive"
 											value="false" id="flexRadioDefault2"> <label
-											class="form-check-label" for="flexRadioDefault2">
-											Inactive </label>
+											class="form-check-label" for="flexRadioDefault2">Etkin değil </label>
 									</div>
 
 								</div>
 								<div class="row">
 
 									<div class="mb-3 col">
-										<label>Enter Stock</label> <input type="text" name="stock"
+										<label>Ürün Stok Adetini Giriniz</label> <input type="text" name="stock"
 											class="form-control">
 									</div>
 
 									<div class="mb-3 col">
-										<label>Upload Image</label> <input type="file" name="file"
+										<label>Resim Yükle</label> <input type="file" name="file"
 											class="form-control">
 									</div>
 								</div>
-								<button class="btn btn-primary col-md-12">Submit</button>
+								<button class="btn btn-primary col-md-12">Ekle</button>
 							</form>
 						</div>
 					</div>

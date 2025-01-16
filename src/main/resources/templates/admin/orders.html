@@ -31,7 +31,7 @@
 									placeholder="Enter order id">
 							</div>
 							<div class="col">
-								<button class="btn btn-primary col">Search</button>
+								<button class="btn btn-primary col">Arama Yapın</button>
 							</div>
 						</div>
 					</form>
@@ -42,13 +42,13 @@
 					<table class="table table-bordered card-sh">
 						<thead class="table-light">
 							<tr>
-								<th scope="col">Order Id</th>
-								<th scope="col">Deliver Details</th>
-								<th scope="col">Date</th>
-								<th scope="col">Product Details</th>
-								<th scope="col">Price</th>
-								<th scope="col">Status</th>
-								<th scope="col">Action</th>
+								<th scope="col">Sipariş Id</th>
+								<th scope="col">Teslimat Detayları</th>
+								<th scope="col">Tarih</th>
+								<th scope="col">Ürün Bilgileri</th>
+								<th scope="col">Fiyat</th>
+								<th scope="col">Durum</th>
+								<th scope="col">Sipariş Bilgisi</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -58,22 +58,18 @@
 										<th scope="row">[[${orderDtls.orderId}]]</th>
 
 										<td>Name : [[${orderDtls.orderAddress.firstName+'
-											'+orderDtls.orderAddress.lastName}]]<br> Email :
-											[[${orderDtls.orderAddress.email}]] <br> Mobno:
-											[[${orderDtls.orderAddress.mobileNo}]] <br> Address :
-											[[${orderDtls.orderAddress.address}]] <br> City :
-											[[${orderDtls.orderAddress.city}]] <br> State :
+											'+orderDtls.orderAddress.lastName}]]<br> E-posta :
+											[[${orderDtls.orderAddress.email}]] <br> Telefon No:
+											[[${orderDtls.orderAddress.mobileNo}]] <br> Adres :
+											[[${orderDtls.orderAddress.address}]] <br> Şehir :
+											[[${orderDtls.orderAddress.city}]] <br> Durum :
 											[[${orderDtls.orderAddress.state}]],
 											[[${orderDtls.orderAddress.pincode}]]
-
-
-
 										</td>
 										<td>[[${orderDtls.orderDate}]]</td>
 										<td>[[${orderDtls.product.title}]]</td>
-										<td>Quantity : [[${orderDtls.quantity}]] <br>Price :
-											[[${orderDtls.price}]] <br>Toplam Fiyat
-											:[[${orderDtls.quantity * orderDtls.price}]]
+										<td>Quantity : [[${orderDtls.quantity}]] <br>Fiyat :
+											[[${orderDtls.price}]] <br>Toplam Fiyat :[[${orderDtls.quantity * orderDtls.price}]]
 										</td>
 										<td>[[${orderDtls.status}]]</td>
 										<td>
@@ -81,13 +77,13 @@
 												<div class="row">
 													<div class="col">
 														<select class="form-control" name="st">
-															<option>--select--</option>
-															<option value="1">In Progress</option>
-															<option value="2">Order Received</option>
-															<option value="3">Product Packed</option>
-															<option value="4">Out for Delivery</option>
-															<option value="5">Delivered</option>
-															<option value="6">Cancelled</option>
+															<option>--SEÇENEKLER--</option>
+															<option value="1">Devam Ediyor</option>
+															<option value="2">Sipariş Alındı</option>
+															<option value="3">Paketlenmiş Ürün</option>
+															<option value="4">Teslimat İçin Dağıtıma Çıktı</option>
+															<option value="5">Teslim edildi</option>
+															<option value="6">İptal Edildi</option>
 														</select>
 													</div>
 													<input th:value="${orderDtls.id}" name="id" type="hidden">
@@ -98,7 +94,7 @@
 														</th:block>
 														<th:block
 															th:unless="${orderDtls.status=='Cancelled' || orderDtls.status=='Delivered'}">
-															<button class="btn btn-sm btn-primary ">Update</button>
+															<button class="btn btn-sm btn-primary ">Güncelle</button>
 														</th:block>
 
 
@@ -117,20 +113,16 @@
 								<tr th:each="o:${orders}">
 									<th scope="row">[[${o.orderId}]]</th>
 
-									<td>Name : [[${o.orderAddress.firstName+'
-										'+o.orderAddress.lastName}]]<br> Email :
-										[[${o.orderAddress.email}]] <br> Mobno:
-										[[${o.orderAddress.mobileNo}]] <br> Address :
-										[[${o.orderAddress.address}]] <br> City :
-										[[${o.orderAddress.city}]] <br> State :
-										[[${o.orderAddress.state}]], [[${o.orderAddress.pincode}]]
-
-
-
+									<td>Ad Soyad : [[${o.orderAddress.firstName+'
+										'+o.orderAddress.lastName}]]<br> E-posta :
+										[[${o.orderAddress.email}]] <br> Telefon No:
+										[[${o.orderAddress.mobileNo}]] <br> Adres :
+										[[${o.orderAddress.address}]] <br> Şehir :
+										[[${o.orderAddress.city}]]
 									</td>
 									<td>[[${o.orderDate}]]</td>
 									<td>[[${o.product.title}]]</td>
-									<td>Quantity : [[${o.quantity}]] <br>Price :
+									<td>Quantity : [[${o.quantity}]] <br>Fiyat :
 										[[${o.price}]] <br>Toplam Fiyat:[[${o.quantity *
 										o.price}]]
 									</td>
@@ -140,24 +132,24 @@
 											<div class="row">
 												<div class="col">
 													<select class="form-control" name="st">
-														<option>--select--</option>
-														<option value="1">In Progress</option>
-														<option value="2">Order Received</option>
-														<option value="3">Product Packed</option>
-														<option value="4">Out for Delivery</option>
-														<option value="5">Delivered</option>
-														<option value="6">Cancelled</option>
+														<option>--SEÇENEKLER--</option>
+														<option value="1">Devam Ediyor</option>
+														<option value="2">Sipariş Alındı</option>
+														<option value="3">Paketlenmiş Ürün</option>
+														<option value="4">Teslimat İçin Dağıtıma Çıktı</option>
+														<option value="5">Teslim edildi</option>
+														<option value="6">İptal Edildi</option>
 													</select>
 												</div>
 												<input th:value="${o.id}" name="id" type="hidden">
 												<div class="col">
 													<th:block
 														th:if="${o.status=='Cancelled' || o.status=='Delivered'}">
-														<button class="btn btn-primary btn-sm col disabled">Update</button>
+														<button class="btn btn-primary btn-sm col disabled">Güncelle</button>
 													</th:block>
 													<th:block
 														th:unless="${o.status=='Cancelled' || o.status=='Delivered'}">
-														<button class="btn btn-sm btn-primary ">Update</button>
+														<button class="btn btn-sm btn-primary ">Güncelle</button>
 													</th:block>
 												</div>
 											</div>
@@ -169,7 +161,7 @@
 					</table>
 					<th:block th:if="${!srch}">
 						<div class="row">
-							<div class="col-md-4">Total Orders : [[${totalElements}]]</div>
+							<div class="col-md-4">Toplam Ürün: [[${totalElements}]]</div>
 							<div class="col-md-6">
 
 								<nav aria-label="Page navigation example">

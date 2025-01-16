@@ -53,7 +53,7 @@ public class SecurityConfig {
 						.failureHandler(authenticationFailureHandler)
 						.successHandler(authenticationSuccessHandler))
 				.logout(logout->logout.permitAll());
-		
+
 		return http.build();
 	}
 
